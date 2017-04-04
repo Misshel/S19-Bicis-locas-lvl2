@@ -48,21 +48,16 @@
   var  validacionEmail = function ( correo ) {
     var correo = this.value;
     var  correoExpr = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-      if( correoExpr.test(correo)!==correo)
+      if( correoExpr.test(correo) ==correo)
       {
-        return false;
+        return true;
       }
   }
 
   // validacion de imputs vacios
-  var input= document.getElementsByClassName("form-control")
-  function errorVacio(e){
-    if(this.value.trim().length==0){
-    this.value="";
-    document.getElementsByClassName(e);
-    tooptip(e);
-      }
-      else{
+  var input= document.getElementsByClassName("form-control");
+  function mayus(e){
+    if(this.value.trim().length!=0){
           var correcto = this.value.split(" ");
           var datoMayuscula= "";
           for(var a =0; a<correcto.length;a++){
@@ -72,12 +67,10 @@
         }
       }
 
-
-
-    for(var i in input){
-       input[i].onblur=errorVacio;
+  for(var i=0; i <2;i++){
+       input[i].onblur=mayus;
    }
-function validateForm(){
+
   var nombre= document.getElementById("name");
   nombre.onkeypress=validacionLetras;
   var apellido= document.getElementById("lastname");
@@ -87,4 +80,26 @@ function validateForm(){
   var password= document.getElementById("input-password");
   password.onkeypress=validacionPassword;
 
+  function validateForm(){
+
+     var nombre= document.getElementById("name");
+    var apellido= document.getElementById("lastname");
+    var email= document.getElementById("input-email");
+    var password= document.getElementById("input-password");
+
+    if(nombre.value.trim().length=0)
+    {
+      var classe=document.getElementsByClassName("name-container input-box");
+      tooptip(classe);
+    }
+    if(apellido.value.trim().length=0)
+    {
+      var classe=document.getElementsByClassName("lastname-container input-box");
+      tooptip(classe);
+    }
+    if(email.value.trim().length=0)
+    {
+      var classe=document.getElementsByClassName("email-container input-box");
+      tooptip(classe);
+    }
 }
